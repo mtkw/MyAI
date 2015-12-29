@@ -1,6 +1,7 @@
 package genetiks;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class test {
 
@@ -34,8 +35,8 @@ public class test {
 			System.out.println("Potomek : " + Arrays.toString(row));
 		}
 		System.out.println("Próba mutacji");
-		mg.mutacja(pop.getPopulation().get(0));
-		
+		mg.mutacja(pop.getPopulation().get(0));	
+		System.out.println(Arrays.toString(mg.getPotomek()));
 	}
 
 }
