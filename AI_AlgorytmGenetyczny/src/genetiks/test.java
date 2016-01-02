@@ -1,6 +1,8 @@
 package genetiks;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 
 public class test {
@@ -18,9 +20,26 @@ public class test {
 		fenotyp.convertStringToIntTab(fenotyp.getFenotypStringList());
 		
 		pop.createPopulation(fenotyp.getFenotypIntTab(), 2);
+		for(Integer[] row: pop.getPopulation()){
+			System.out.println(Arrays.toString(row));
+		}
+		
+		pop.decodeBitReprezentation(pop.getPopulation());
+		System.out.println(pop.getBitAndIntPopulation().get(pop.getPopulation().get(0)));
+		System.out.println(pop.getBitAndIntPopulation().get(pop.getPopulation().get(1)));
+		
+
+//		Iterator iterator = pop.getBitAndIntPopulation().keySet().iterator();
+
+//		while (iterator.hasNext()) {
+//		   String key = iterator.next().toString();
+//		   Integer value = pop.getBitAndIntPopulation().get(key);
+//
+//		   System.out.println(key + " " + value);
+//		}
 		
 //		f.f(pop.getPopulation().get(0));
-		f.bitToInt(pop.getPopulation().get(0));
+//		f.bitToInt(pop.getPopulation().get(0));
 //		f.f(f.getIntValue());
 //		System.out.println(f.getIntValue());
 		

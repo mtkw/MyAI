@@ -1,9 +1,11 @@
 package genetiks;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FunkcjaPrzystosowania {
-
+	
 	private int value = 0;
 	private int intValue = 0;
 

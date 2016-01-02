@@ -10,7 +10,7 @@ import java.util.List;
 public class Fenotyp {
 
 	private List<String> fenotypStringList = new ArrayList<>();
-	private List<int[]> fenotypIntTab = new ArrayList<>();
+	private List<Integer[]> fenotypIntTab = new ArrayList<>();
 
 	public List<String> createStringFenotyp(int start, int end) {
 
@@ -49,10 +49,10 @@ public class Fenotyp {
 		return fenotypStringList;
 	}
 
-	public List<int[]> convertStringToIntTab(List<String> fenotyp) {
+	public List<Integer[]> convertStringToIntTab(List<String> fenotyp) {
 
 		for (String str : fenotyp) {
-			int[] bitTab = new int[5];
+			Integer[] bitTab = new Integer[5];
 
 			for (int i = 0; i < str.length(); i++) {
 				String subString = str.substring(i, i+1);
@@ -72,11 +72,11 @@ public class Fenotyp {
 		this.fenotypStringList = fenotypStringList;
 	}
 
-	public List<int[]> getFenotypIntTab() {
+	public List<Integer[]> getFenotypIntTab() {
 		return fenotypIntTab;
 	}
 
-	public void setFenotypIntTab(List<int[]> fenotypIntTab) {
+	public void setFenotypIntTab(List<Integer[]> fenotypIntTab) {
 		this.fenotypIntTab = fenotypIntTab;
 	}
 
