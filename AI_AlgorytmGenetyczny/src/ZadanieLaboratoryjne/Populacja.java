@@ -2,6 +2,7 @@ package ZadanieLaboratoryjne;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Random;
 
 /*
  * Klasa Odpowiedzialna za utworzenie populacji osobników
@@ -14,22 +15,23 @@ import java.util.LinkedList;
  */
 public class Populacja {
 
-	private LinkedList<Integer[]> populacja;
+	private LinkedList<Integer[]> fenotyp;
 	private Integer[] pierwszyOsobnik;
+	private LinkedList<Integer[]> populacja;
 
 	/*
 	 * Integer pop_size -> wielkoœæ populacji (ca³a przestrzeñ przeszukiwañ)
 	 * Integer size -> iloœæ bitów potrzebna do zakodwoania pojedynczego
 	 * osobnika
 	 */
-	public LinkedList<Integer[]> utworzeniePopulacji(Integer pop_size, Integer size) {
-		populacja = new LinkedList<>();
+	public LinkedList<Integer[]> utworzenieFenotypu(Integer pop_size, Integer size) {
+		fenotyp = new LinkedList<>();
 		for (Integer i = pop_size; i >= 0; i--) {
 
 			Integer[] osobnik = new Integer[size];
 			utwórzPierwszegoOsobnika(size);
 			osobnik = pierwszyOsobnik;
-			
+
 			// Zamiana ka¿dego punktu z przestrzeni poszukiwañ na reprezentacje
 			// binarn¹
 			String strBit = Integer.toBinaryString(i);
@@ -54,9 +56,9 @@ public class Populacja {
 					}
 				}
 			}
-			populacja.add(osobnik);
+			fenotyp.add(osobnik);
 		}
-		return populacja;
+		return fenotyp;
 	}
 
 	/*
@@ -71,17 +73,35 @@ public class Populacja {
 
 		return pierwszyOsobnik;
 	}
-	
-	//Dekodowanie Zgodne ze wzrorem umieszczonym w przyk³adzie
-	public Double dekodowanieChromosomu(Integer[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu){
+
+	// Dekodowanie Zgodne ze wzrorem umieszczonym w przyk³adzie
+	public Double dekodowanieChromosomu(Integer[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu) {
 		Double value = 0.0;
 		int xPrim = 0;
-		for(int i = 0; i < osobnik.length; i++){
-			xPrim += (int)(osobnik[i] * 2);
+		for (int i = 0; i < osobnik.length; i++) {
+			xPrim += (int) (osobnik[i] * 2);
 		}
 		System.out.println(xPrim);
-		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim)/(Math.pow(2.0, 11.0) - 1);
+		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1);
 		return value;
+	}
+
+	public LinkedList<Integer[]> inicjacjaPopulacji(LinkedList<Integer[]> fenotyp, int pop_size) {
+		populacja = new LinkedList<>();
+		for (int i = 0; i < pop_size; i++) {
+			Random r = new Random();
+			int pozycja = r.nextInt(fenotyp.size() - 1);
+			populacja.add(fenotyp.get(pozycja));
+		}
+		return populacja;
+	}
+
+	public LinkedList<Integer[]> getFenotyp() {
+		return fenotyp;
+	}
+
+	public void setFenotyp(LinkedList<Integer[]> fenotyp) {
+		this.fenotyp = fenotyp;
 	}
 
 	public LinkedList<Integer[]> getPopulacja() {
