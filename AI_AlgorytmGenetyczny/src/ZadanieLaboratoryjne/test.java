@@ -7,6 +7,7 @@ public class test {
 	public static void main(String[] args) {
 		Populacja p = new Populacja();
 		FunkcjaPrzystosowania f = new FunkcjaPrzystosowania();
+		KoloRuletki kolo = new KoloRuletki();
 		
 		p.utworzenieFenotypu(2000, 11);
 //		System.out.println(p.getFenotyp().size());
@@ -18,6 +19,8 @@ public class test {
 		for(Object[] row: p.getPopulacjaPoOceniePrzystosowania()){
 			System.out.println(Arrays.toString(row));
 		}
+		
+		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
 		
 		
 //		for(Integer[] row: p.getPopulacja()){
