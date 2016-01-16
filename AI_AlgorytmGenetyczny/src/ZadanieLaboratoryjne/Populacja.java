@@ -15,9 +15,12 @@ import java.util.Random;
  */
 public class Populacja {
 
+	private FunkcjaPrzystosowania fn = new FunkcjaPrzystosowania();
+
 	private LinkedList<Integer[]> fenotyp;
 	private Integer[] pierwszyOsobnik;
 	private LinkedList<Integer[]> populacja;
+	private LinkedList<Object[]> populacjaPoOceniePrzystosowania;
 
 	/*
 	 * Integer pop_size -> wielkoœæ populacji (ca³a przestrzeñ przeszukiwañ)
@@ -81,7 +84,7 @@ public class Populacja {
 		for (int i = 0; i < osobnik.length; i++) {
 			xPrim += (int) (osobnik[i] * 2);
 		}
-		System.out.println(xPrim);
+		// System.out.println(xPrim);
 		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1);
 		return value;
 	}
@@ -94,6 +97,25 @@ public class Populacja {
 			populacja.add(fenotyp.get(pozycja));
 		}
 		return populacja;
+	}
+
+	/*
+	 * Tworzy Liste zawieraj¹c¹ dwa parametry
+	 * pierwszy parametr to pozycja chromosomu na liœcie populacji
+	 * drugi parametr to wartoœæ funkcji przystosowania dla tego chromosomu
+	 */
+	public LinkedList<Object[]> ocenaPrzystosowaniaChromosomu(LinkedList<Integer[]> populacja) {
+		populacjaPoOceniePrzystosowania = new LinkedList<>();
+		for (Integer[] chromosom: populacja) {
+			Object[] wektor = new Object[12];
+			fn.wyznaczenie_wartoœci_funckji_przystosowania(dekodowanieChromosomu(chromosom, 0.5, 2.0));
+			for(int j = 0; j < wektor.length - 1; j++){
+				wektor[j] = chromosom[j];
+			}
+			wektor[11] = fn.getWartoscFunckji();
+			populacjaPoOceniePrzystosowania.add(wektor);
+		}
+		return populacjaPoOceniePrzystosowania;
 	}
 
 	public LinkedList<Integer[]> getFenotyp() {
@@ -110,6 +132,14 @@ public class Populacja {
 
 	public void setPopulacja(LinkedList<Integer[]> populacja) {
 		this.populacja = populacja;
+	}
+
+	public LinkedList<Object[]> getPopulacjaPoOceniePrzystosowania() {
+		return populacjaPoOceniePrzystosowania;
+	}
+
+	public void setPopulacjaPoOceniePrzystosowania(LinkedList<Object[]> populacjaPoOceniePrzystosowania) {
+		this.populacjaPoOceniePrzystosowania = populacjaPoOceniePrzystosowania;
 	}
 
 }

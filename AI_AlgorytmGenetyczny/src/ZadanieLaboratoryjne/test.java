@@ -9,10 +9,16 @@ public class test {
 		FunkcjaPrzystosowania f = new FunkcjaPrzystosowania();
 		
 		p.utworzenieFenotypu(2000, 11);
-		System.out.println(p.getFenotyp().size());
+//		System.out.println(p.getFenotyp().size());
 		
 		p.inicjacjaPopulacji(p.getFenotyp(), 10);
-		System.out.println(p.getPopulacja().size());
+		
+		p.ocenaPrzystosowaniaChromosomu(p.getPopulacja());
+		
+		for(Object[] row: p.getPopulacjaPoOceniePrzystosowania()){
+			System.out.println(Arrays.toString(row));
+		}
+		
 		
 //		for(Integer[] row: p.getPopulacja()){
 //			System.out.println(Arrays.toString(row));
