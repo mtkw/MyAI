@@ -43,7 +43,6 @@ public class Populacja {
 					} else {
 						osobnik[j] = 1;
 					}
-//					populacja.add(osobnik);
 				}
 			} else {
 				for (int s = charTab.length - 1; s >= 0; s--) {
@@ -53,7 +52,6 @@ public class Populacja {
 					} else {
 						osobnik[s + przesuniecie] = 1;
 					}
-//					populacja.add(osobnik);
 				}
 			}
 			populacja.add(osobnik);
@@ -72,6 +70,18 @@ public class Populacja {
 		}
 
 		return pierwszyOsobnik;
+	}
+	
+	//Dekodowanie Zgodne ze wzrorem umieszczonym w przyk³adzie
+	public Double dekodowanieChromosomu(Integer[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu){
+		Double value = 0.0;
+		int xPrim = 0;
+		for(int i = 0; i < osobnik.length; i++){
+			xPrim += (int)(osobnik[i] * 2);
+		}
+		System.out.println(xPrim);
+		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim)/(Math.pow(2.0, 11.0) - 1);
+		return value;
 	}
 
 	public LinkedList<Integer[]> getPopulacja() {
