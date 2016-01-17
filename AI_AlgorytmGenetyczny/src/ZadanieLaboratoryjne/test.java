@@ -12,15 +12,19 @@ public class test {
 		p.utworzenieFenotypu(2000, 11);
 //		System.out.println(p.getFenotyp().size());
 		
-		p.inicjacjaPopulacji(p.getFenotyp(), 10);
-		
-		p.ocenaPrzystosowaniaChromosomu(p.getPopulacja());
-		
-		for(Object[] row: p.getPopulacjaPoOceniePrzystosowania()){
-			System.out.println(Arrays.toString(row));
-		}
-		
-		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
+//		p.inicjacjaPopulacji(p.getFenotyp(), 100);
+//		
+		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getFirst(), 0.5, 2.0));
+		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getLast(), 0.5, 2.0));
+//		
+//		p.ocenaPrzystosowaniaChromosomu(p.getPopulacja());
+//		
+//		
+//		for(Object[] row: p.getPopulacjaPoOceniePrzystosowania()){
+//			System.out.println(Arrays.toString(row));
+//		}
+//		
+//		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
 		
 		
 //		for(Integer[] row: p.getPopulacja()){

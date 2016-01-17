@@ -1,5 +1,6 @@
 package ZadanieLaboratoryjne;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
@@ -81,12 +82,16 @@ public class Populacja {
 	public Double dekodowanieChromosomu(Integer[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu) {
 		Double value = 0.0;
 		int xPrim = 0;
-		for (int i = 0; i < osobnik.length; i++) {
-			xPrim += (int) (osobnik[i] * 2);
+		int pot = 0;
+		for (int i = osobnik.length - 1; i >= 0; i--) {
+			xPrim += (int) (osobnik[i] * Math.pow(2, pot));
+			pot++;
 		}
-		// System.out.println(xPrim);
-		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1);
-		return value;
+		BigDecimal bd = new BigDecimal(pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1));
+	    BigDecimal rounded = bd.setScale(3, BigDecimal.ROUND_HALF_UP);
+//		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1);
+	    System.out.println(rounded.doubleValue());
+		return rounded.doubleValue();
 	}
 
 	public LinkedList<Integer[]> inicjacjaPopulacji(LinkedList<Integer[]> fenotyp, int pop_size) {
@@ -94,6 +99,7 @@ public class Populacja {
 		for (int i = 0; i < pop_size; i++) {
 			Random r = new Random();
 			int pozycja = r.nextInt(fenotyp.size() - 1);
+			System.out.println("RANDOM:  " + pozycja);
 			populacja.add(fenotyp.get(pozycja));
 		}
 		return populacja;

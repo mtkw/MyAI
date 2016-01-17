@@ -19,7 +19,8 @@ public class Population {
 		for (int i = 0; i < popSize; i++) {
 			Random r = new Random();
 			int position = r.nextInt(fenotyp.size() - 1);
-			population.add(fenotyp.get(position));
+			System.out.println(position);
+//			population.add(fenotyp.get(position));
 		}
 
 		return population;
