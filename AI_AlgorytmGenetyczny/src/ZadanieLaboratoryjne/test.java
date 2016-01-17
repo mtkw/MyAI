@@ -23,11 +23,13 @@ public class test {
 		
 		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
 		
+		kolo.losowanieOsobnikowKolaRuletki(kolo.getKoloRuletki());
+		
 //		
 //		
-		for(Object[] row: kolo.getKoloRuletki()){
-			System.out.println(Arrays.toString(row));
-		}
+//		for(Object[] row: kolo.getKoloRuletki()){
+//			System.out.println(Arrays.toString(row));
+//		}
 		
 //		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
 		
