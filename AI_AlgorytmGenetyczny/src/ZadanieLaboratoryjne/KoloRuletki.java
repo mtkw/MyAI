@@ -1,17 +1,15 @@
 package ZadanieLaboratoryjne;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
-
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 public class KoloRuletki {
 
 	private LinkedList<Object[]> koloRuletki;
 	private LinkedList<Object[]> wylosowaneOsobniki = new LinkedList<>();
 	private Double suma = 0.0;
+	private Double sredniaWartoscPrzystosowaniaRodzicow = 0.0;
 
 	/*
 	 * Kolo ruletki zawiera Liste Obiektów Ka¿dy obiekt ma zakodowane 1.
@@ -46,16 +44,24 @@ public class KoloRuletki {
 	}
 
 	public LinkedList<Object[]> losowanieOsobnikowKolaRuletki(LinkedList<Object[]> koloRuletki) {
+		double sumaWartosciPrzystosowaniaChromosomow = 0.0;
 		for (int i = 0; i < koloRuletki.size(); i++) {
 			Random r = new Random();
 			double wylosowanaLiczba = r.nextInt(100);
-			for(Object[] chromosom: koloRuletki){
-				if(wylosowanaLiczba >= (double)chromosom[12] && wylosowanaLiczba <= (double)chromosom[13]){
-					System.out.println("WYLOSOWANA LICZBA TO: " + wylosowanaLiczba);
-					System.out.println(Arrays.toString(chromosom));
+			for (Object[] chromosom : koloRuletki) {
+				if (wylosowanaLiczba >= (double) chromosom[12] && wylosowanaLiczba <= (double) chromosom[13]) {
+					// System.out.println("WYLOSOWANA LICZBA TO: " +
+					// wylosowanaLiczba);
+					// System.out.println(Arrays.toString(chromosom));
+					Object[] chromosomCiagBinarny = new Object[11];
+					System.arraycopy(chromosom, 0, chromosomCiagBinarny, 0, chromosomCiagBinarny.length);
+					wylosowaneOsobniki.add(chromosomCiagBinarny);
+
+					sumaWartosciPrzystosowaniaChromosomow += (double) chromosom[11];
 				}
 			}
 		}
+		sredniaWartoscPrzystosowaniaRodzicow = sumaWartosciPrzystosowaniaChromosomow / koloRuletki.size();
 		return wylosowaneOsobniki;
 	}
 
@@ -72,6 +78,22 @@ public class KoloRuletki {
 
 	public void setKoloRuletki(LinkedList<Object[]> koloRuletki) {
 		this.koloRuletki = koloRuletki;
+	}
+
+	public LinkedList<Object[]> getWylosowaneOsobniki() {
+		return wylosowaneOsobniki;
+	}
+
+	public void setWylosowaneOsobniki(LinkedList<Object[]> wylosowaneOsobniki) {
+		this.wylosowaneOsobniki = wylosowaneOsobniki;
+	}
+
+	public Double getSredniaWartoscPrzystosowaniaRodzicow() {
+		return sredniaWartoscPrzystosowaniaRodzicow;
+	}
+
+	public void setSredniaWartoscPrzystosowaniaRodzicow(Double sredniaWartoscPrzystosowaniaRodzicow) {
+		this.sredniaWartoscPrzystosowaniaRodzicow = sredniaWartoscPrzystosowaniaRodzicow;
 	}
 
 }

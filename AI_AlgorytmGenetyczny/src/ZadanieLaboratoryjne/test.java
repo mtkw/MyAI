@@ -8,6 +8,7 @@ public class test {
 		Populacja p = new Populacja();
 		FunkcjaPrzystosowania f = new FunkcjaPrzystosowania();
 		KoloRuletki kolo = new KoloRuletki();
+		MetodyGenetyczne mg = new MetodyGenetyczne();
 		
 		p.utworzenieFenotypu(2047, 11);
 //		System.out.println(p.getFenotyp().size());
@@ -25,6 +26,14 @@ public class test {
 		
 		kolo.losowanieOsobnikowKolaRuletki(kolo.getKoloRuletki());
 		
+//		System.out.println(kolo.getWylosowaneOsobniki().size());
+		
+		mg.ustawienieParametrow(75, 20, 5, kolo.getWylosowaneOsobniki());
+
+//		for(Object[] row: kolo.getWylosowaneOsobniki()){
+//			System.out.println(Arrays.toString(row));
+//		}
+//		System.out.println(kolo.getSredniaWartoscPrzystosowaniaRodzicow());
 //		
 //		
 //		for(Object[] row: kolo.getKoloRuletki()){
