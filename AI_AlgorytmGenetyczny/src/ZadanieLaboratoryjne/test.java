@@ -26,7 +26,7 @@ public class test {
 		
 		kolo.losowanieOsobnikowKolaRuletki(kolo.getKoloRuletki());
 		
-//		System.out.println(kolo.getWylosowaneOsobniki().size());
+		System.out.println("INPUT SIZE: " + kolo.getWylosowaneOsobniki().size());
 		
 		mg.ustawienieParametrow(75, 20, 5, kolo.getWylosowaneOsobniki());
 
