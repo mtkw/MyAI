@@ -9,10 +9,8 @@ import java.util.Random;
  * Klasa Odpowiedzialna za utworzenie populacji osobników
  * Populacja sk³ada siê z osobników z przedzia³u [0,5 - 2,5]
  * Ka¿dy osobnik musi byæ wyznaczony z dok³adnoœci¹ do 3 zer po kropce dziesiêtnej
- * Ca³a Populacja sk³ada siê z 2000 osobników 
+ * Ca³a Populacja sk³ada siê z 2047 osobników 
  * Wynika z tego ¿e ka¿dy osobnik musi byæ zakodowany na 11 bitach
- * 2 do 10 potêgi < 2000 < 2 do 11 potêgi
- * 1024 < //2000// < 2048
  */
 public class Populacja {
 
@@ -90,7 +88,7 @@ public class Populacja {
 		BigDecimal bd = new BigDecimal(pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1));
 	    BigDecimal rounded = bd.setScale(3, BigDecimal.ROUND_HALF_UP);
 //		value = pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1);
-	    System.out.println(rounded.doubleValue());
+//	    System.out.println(rounded.doubleValue());
 		return rounded.doubleValue();
 	}
 
@@ -99,7 +97,7 @@ public class Populacja {
 		for (int i = 0; i < pop_size; i++) {
 			Random r = new Random();
 			int pozycja = r.nextInt(fenotyp.size() - 1);
-			System.out.println("RANDOM:  " + pozycja);
+//			System.out.println("RANDOM:  " + pozycja);
 			populacja.add(fenotyp.get(pozycja));
 		}
 		return populacja;
