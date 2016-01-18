@@ -62,6 +62,8 @@ public class KoloRuletki {
 			}
 		}
 		sredniaWartoscPrzystosowaniaRodzicow = sumaWartosciPrzystosowaniaChromosomow / koloRuletki.size();
+//		System.out.println("Suma Wartoœci " + sumaWartosciPrzystosowaniaChromosomow);
+//		System.out.println("AVG " + sredniaWartoscPrzystosowaniaRodzicow);
 		return wylosowaneOsobniki;
 	}
 

@@ -16,9 +16,10 @@ public class test {
 //		MetodyGenetyczne mg = new MetodyGenetyczne();
 //		
 //		p.utworzenieFenotypu(2047, 11);
-////		System.out.println(p.getFenotyp().size());
+//		System.out.println("FENOTYP " + p.getFenotyp().size());
 //		
 //		p.inicjacjaPopulacji(p.getFenotyp(), 10);
+//		System.out.println("POPULACJA: " + p.getPopulacja().size());
 ////		
 ////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getFirst(), 0.5, 2.0));
 ////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getLast(), 0.5, 2.0));
@@ -34,7 +35,8 @@ public class test {
 //		System.out.println("INPUT SIZE: " + kolo.getWylosowaneOsobniki().size());
 //		
 //		mg.ustawienieParametrow(75, 20, 5, kolo.getWylosowaneOsobniki());
-//
+//		System.out.println("WYBRANE DO METOD GENETYCZNYCH CHROMOSOMY " + kolo.getWylosowaneOsobniki().size());
+//		System.out.println("NASTEPNE POKOLENIE: " + mg.getPotomstwo().size());
 ////		for(Object[] row: kolo.getWylosowaneOsobniki()){
 ////			System.out.println(Arrays.toString(row));
 ////		}

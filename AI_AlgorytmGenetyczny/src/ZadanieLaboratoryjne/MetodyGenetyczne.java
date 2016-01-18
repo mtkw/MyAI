@@ -17,7 +17,6 @@ public class MetodyGenetyczne {
 	 * = 100
 	 */
 	public LinkedList<Object[]> ustawienieParametrow(int pk, int pr, int pm, LinkedList<Object[]> pulaRodzicielska) {
-		
 		potomstwo = new LinkedList<>();
 		
 		podzialPopulacjiNaPary(pulaRodzicielska);
@@ -26,22 +25,23 @@ public class MetodyGenetyczne {
 			int wylosowanaLiczba = (int) row.getLast()[0];
 			if (wylosowanaLiczba >= 0 && wylosowanaLiczba <= pk) {
 				// System.out.println("KRZYZOWANIE");
-				krzyzowanie(row);
+				dodanieDoListyPotomkow(krzyzowanie(row));
 			}
 			if (wylosowanaLiczba > pk && wylosowanaLiczba <= pk + pr) {
 				// System.out.println("REPRODUKCJA");
-				reprodukcja(row);
+				dodanieDoListyPotomkow(reprodukcja(row));
 			}
 			if (wylosowanaLiczba > pk + pr && wylosowanaLiczba <= 100) {
 				// System.out.println("MUTACJA");
-				mutacja(row);
+				dodanieDoListyPotomkow(mutacja(row));
 			}
 		}
-		potomstwo.clear();
 		return potomstwo;
 	}
 
 	private LinkedList<Object[]> krzyzowanie(LinkedList<Object[]> paraRodzicielska) {
+		LinkedList<Object[]> potomkowie = new LinkedList<>();
+		
 		Object[] rodzic1 = paraRodzicielska.getFirst();
 		Object[] rodzic2 = paraRodzicielska.get(1);
 		Object[] rodzic2Clone = rodzic2.clone();
@@ -62,13 +62,13 @@ public class MetodyGenetyczne {
 		// System.out.println("RODZIC 2 PO KRZYZOWANIU: " +
 		// Arrays.toString(rodzic2));
 
-		potomstwo.add(rodzic1);
-		potomstwo.add(rodzic2);
-		return potomstwo;
+		potomkowie.add(rodzic1);
+		potomkowie.add(rodzic2);
+		return potomkowie;
 	}
 
 	private LinkedList<Object[]> mutacja(LinkedList<Object[]> paraRodzicielska) {
-
+		LinkedList<Object[]> potomkowie = new LinkedList<>();
 		for (int i = 0; i < 2; i++) {
 			Random r = new Random();
 			int genPodlegajacyMutacji = r.nextInt(paraRodzicielska.get(i).length - 1) + 1;
@@ -78,18 +78,18 @@ public class MetodyGenetyczne {
 			} else {
 				zmutowanyOsobnik[genPodlegajacyMutacji] = 0;
 			}
-			potomstwo.add(zmutowanyOsobnik);
+			potomkowie.add(zmutowanyOsobnik);
 		}
 
-		return potomstwo;
+		return potomkowie;
 	}
 
 	private LinkedList<Object[]> reprodukcja(LinkedList<Object[]> paraRodzicielska) {
+		LinkedList<Object[]> potomkowie = new LinkedList<>();
+		potomkowie.add(paraRodzicielska.getFirst());
+		potomkowie.add(paraRodzicielska.get(1));
 
-		potomstwo.add(paraRodzicielska.getFirst());
-		potomstwo.add(paraRodzicielska.get(1));
-
-		return potomstwo;
+		return potomkowie;
 	}
 
 	/*
@@ -115,6 +115,12 @@ public class MetodyGenetyczne {
 		}
 
 		return pary;
+	}
+	
+	private void dodanieDoListyPotomkow(LinkedList<Object[]> potomkowiePoMetodachGenetycznych){
+		for(Object[] row: potomkowiePoMetodachGenetycznych){
+			potomstwo.add(row);
+		}
 	}
 
 	public LinkedList<Object[]> getPotomstwo() {

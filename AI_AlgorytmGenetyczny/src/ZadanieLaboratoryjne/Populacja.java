@@ -136,10 +136,6 @@ public class Populacja {
 	}
 
 	public void setPopulacja(LinkedList<Object[]> populacja) {
-		
-		for(Object[] row: populacja){
-			populacja.add(row);
-		}
 		this.populacja = populacja;
 	}
 
