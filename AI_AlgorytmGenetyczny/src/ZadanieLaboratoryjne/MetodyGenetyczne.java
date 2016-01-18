@@ -110,4 +110,12 @@ public class MetodyGenetyczne {
 		return pary;
 	}
 
+	public LinkedList<Object[]> getPotomstwo() {
+		return potomstwo;
+	}
+
+	public void setPotomstwo(LinkedList<Object[]> potomstwo) {
+		this.potomstwo = potomstwo;
+	}
+
 }
