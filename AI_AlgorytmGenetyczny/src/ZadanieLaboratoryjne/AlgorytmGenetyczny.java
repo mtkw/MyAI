@@ -20,15 +20,16 @@ public class AlgorytmGenetyczny {
 	 */
 	public void algorytmGenetyczny(int fenotyp_size, int chromosom_size, int pop_size, int pk, int pr, int pm,
 			int liczba_epok) {
-
+		
+		//Utworzenie zbioru przeszukiwañ danego problemu i okreslenie wielkoœci chromosomu 
 		populacja.utworzenieFenotypu(fenotyp_size, chromosom_size);
 
+		//G³ówna pêtla algorytmu warunkiem stopu jest osi¹gniêcie okreœlonej liczby epok
 		while (liczba_epok >= licznik_epok) {
 
 			// Podczas pierwszej iteracji zostanie zainicjowana nowa populacja
 			// Za ka¿dym kolejnym razem bedzie pobierana populacaja potomków
-			// powsta³a
-			// Po wykonaniu metod genetycznych
+			// powsta³a po wykonaniu metod genetycznych
 			if (populacja.getPopulacja() == null) {
 				populacja.inicjacjaPopulacji(populacja.getFenotyp(), pop_size);
 			} else {
@@ -41,12 +42,12 @@ public class AlgorytmGenetyczny {
 			// Selekcja osobników do dalszych procesów i przydzielenie wycinków
 			// ko³a dla kazdego z nich
 			ruletka.prawdopodobienstwoWyboru(populacja.getPopulacjaPoOceniePrzystosowania());
-			ruletka.losowanieOsobnikowKolaRuletki(ruletka.getKoloRuletki());
-			
-			System.out.println("AVG  " + ruletka.getSredniaWartoscPrzystosowaniaRodzicow());
-
+			ruletka.losowanieOsobnikowKolaRuletki(ruletka.getKoloRuletki());			
+			System.out.println(ruletka.getWylosowaneOsobniki().size());
 			// Zastosowanie operatorów genetycznych
 			metody.ustawienieParametrow(pk, pr, pm, ruletka.getWylosowaneOsobniki());
+			
+//			System.out.println(metody.getPotomstwo().size());
 
 			// Ustawienie nowej populacji poczatkowej jako powsta³e potomstwo
 			populacja.getPopulacja().clear();

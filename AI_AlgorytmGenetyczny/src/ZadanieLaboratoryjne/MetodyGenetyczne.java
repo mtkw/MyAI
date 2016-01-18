@@ -20,28 +20,32 @@ public class MetodyGenetyczne {
 		potomstwo = new LinkedList<>();
 		
 		podzialPopulacjiNaPary(pulaRodzicielska);
+//		System.out.println(pary.size());
 
 		for (LinkedList<Object[]> row : pary) {
 			int wylosowanaLiczba = (int) row.getLast()[0];
 			if (wylosowanaLiczba >= 0 && wylosowanaLiczba <= pk) {
-				// System.out.println("KRZYZOWANIE");
+//				System.out.println("KRZYZOWANIE");
 				dodanieDoListyPotomkow(krzyzowanie(row));
 			}
 			if (wylosowanaLiczba > pk && wylosowanaLiczba <= pk + pr) {
-				// System.out.println("REPRODUKCJA");
+//				System.out.println("REPRODUKCJA");
 				dodanieDoListyPotomkow(reprodukcja(row));
 			}
 			if (wylosowanaLiczba > pk + pr && wylosowanaLiczba <= 100) {
-				// System.out.println("MUTACJA");
+//				System.out.println("MUTACJA");
 				dodanieDoListyPotomkow(mutacja(row));
 			}
+			// System.out.println(potomstwo.size());
 		}
+//		System.out.println("KONIEC ITERACJI ----->>>>");
+		// System.out.println("POTOMSTWO W MG: " + potomstwo.size());
 		return potomstwo;
 	}
 
 	private LinkedList<Object[]> krzyzowanie(LinkedList<Object[]> paraRodzicielska) {
 		LinkedList<Object[]> potomkowie = new LinkedList<>();
-		
+
 		Object[] rodzic1 = paraRodzicielska.getFirst();
 		Object[] rodzic2 = paraRodzicielska.get(1);
 		Object[] rodzic2Clone = rodzic2.clone();
@@ -98,11 +102,11 @@ public class MetodyGenetyczne {
 	 * dana para Krzyo¿waniu, mutacji czy reprodukcji
 	 */
 	public LinkedList<LinkedList<Object[]>> podzialPopulacjiNaPary(LinkedList<Object[]> pulaRodzicielska) {
-		
+
 		pary = new LinkedList<>();
-		
+
 		int halfSize = pulaRodzicielska.size() / 2;
-		
+
 		for (int i = 0; i < halfSize; i++) {
 			LinkedList<Object[]> pojedynczaPara = new LinkedList<>();
 
@@ -116,9 +120,9 @@ public class MetodyGenetyczne {
 
 		return pary;
 	}
-	
-	private void dodanieDoListyPotomkow(LinkedList<Object[]> potomkowiePoMetodachGenetycznych){
-		for(Object[] row: potomkowiePoMetodachGenetycznych){
+
+	private void dodanieDoListyPotomkow(LinkedList<Object[]> potomkowiePoMetodachGenetycznych) {
+		for (Object[] row : potomkowiePoMetodachGenetycznych) {
 			potomstwo.add(row);
 		}
 	}
