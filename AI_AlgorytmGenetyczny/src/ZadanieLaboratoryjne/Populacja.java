@@ -16,9 +16,9 @@ public class Populacja {
 
 	private FunkcjaPrzystosowania fn = new FunkcjaPrzystosowania();
 
-	private LinkedList<Integer[]> fenotyp;
-	private Integer[] pierwszyOsobnik;
-	private LinkedList<Integer[]> populacja;
+	private LinkedList<Object[]> fenotyp;
+	private Object[] pierwszyOsobnik;
+	private LinkedList<Object[]> populacja;
 	private LinkedList<Object[]> populacjaPoOceniePrzystosowania;
 
 	/*
@@ -26,11 +26,11 @@ public class Populacja {
 	 * Integer size -> iloœæ bitów potrzebna do zakodwoania pojedynczego
 	 * osobnika
 	 */
-	public LinkedList<Integer[]> utworzenieFenotypu(Integer pop_size, Integer size) {
+	public LinkedList<Object[]> utworzenieFenotypu(Integer pop_size, Integer size) {
 		fenotyp = new LinkedList<>();
 		for (Integer i = pop_size; i >= 0; i--) {
 
-			Integer[] osobnik = new Integer[size];
+			Object[] osobnik = new Object[size];
 			utwórzPierwszegoOsobnika(size);
 			osobnik = pierwszyOsobnik;
 
@@ -66,8 +66,8 @@ public class Populacja {
 	/*
 	 * Prywanta metod s³u¿¹ca do utworzenia pierwszego osobnika o wartoœci 0
 	 */
-	private Integer[] utwórzPierwszegoOsobnika(Integer size) {
-		pierwszyOsobnik = new Integer[size];
+	private Object[] utwórzPierwszegoOsobnika(Integer size) {
+		pierwszyOsobnik = new Object[size];
 
 		for (int i = size - 1; i >= 0; i--) {
 			pierwszyOsobnik[i] = 0;
@@ -77,12 +77,13 @@ public class Populacja {
 	}
 
 	// Dekodowanie Zgodne ze wzrorem umieszczonym w przyk³adzie
-	public Double dekodowanieChromosomu(Integer[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu) {
+	public Double dekodowanieChromosomu(Object[] osobnik, Double pocz¹tekZakresu, Double wielkoœæZakresu) {
 		Double value = 0.0;
 		int xPrim = 0;
 		int pot = 0;
 		for (int i = osobnik.length - 1; i >= 0; i--) {
-			xPrim += (int) (osobnik[i] * Math.pow(2, pot));
+			int val = (int)osobnik[i];
+			xPrim += (int) (val * Math.pow(2, pot));
 			pot++;
 		}
 		BigDecimal bd = new BigDecimal(pocz¹tekZakresu + (wielkoœæZakresu * xPrim) / (Math.pow(2.0, 11.0) - 1));
@@ -92,7 +93,7 @@ public class Populacja {
 		return rounded.doubleValue();
 	}
 
-	public LinkedList<Integer[]> inicjacjaPopulacji(LinkedList<Integer[]> fenotyp, int pop_size) {
+	public LinkedList<Object[]> inicjacjaPopulacji(LinkedList<Object[]> fenotyp, int pop_size) {
 		populacja = new LinkedList<>();
 		for (int i = 0; i < pop_size; i++) {
 			Random r = new Random();
@@ -108,9 +109,9 @@ public class Populacja {
 	 * pierwszy parametr to pozycja chromosomu na liœcie populacji
 	 * drugi parametr to wartoœæ funkcji przystosowania dla tego chromosomu
 	 */
-	public LinkedList<Object[]> ocenaPrzystosowaniaChromosomu(LinkedList<Integer[]> populacja) {
+	public LinkedList<Object[]> ocenaPrzystosowaniaChromosomu(LinkedList<Object[]> populacja) {
 		populacjaPoOceniePrzystosowania = new LinkedList<>();
-		for (Integer[] chromosom: populacja) {
+		for (Object[] chromosom: populacja) {
 			Object[] wektor = new Object[12];
 			fn.wyznaczenie_wartoœci_funckji_przystosowania(dekodowanieChromosomu(chromosom, 0.5, 2.0));
 			for(int j = 0; j < wektor.length - 1; j++){
@@ -122,19 +123,23 @@ public class Populacja {
 		return populacjaPoOceniePrzystosowania;
 	}
 
-	public LinkedList<Integer[]> getFenotyp() {
+	public LinkedList<Object[]> getFenotyp() {
 		return fenotyp;
 	}
 
-	public void setFenotyp(LinkedList<Integer[]> fenotyp) {
+	public void setFenotyp(LinkedList<Object[]> fenotyp) {
 		this.fenotyp = fenotyp;
 	}
 
-	public LinkedList<Integer[]> getPopulacja() {
+	public LinkedList<Object[]> getPopulacja() {
 		return populacja;
 	}
 
-	public void setPopulacja(LinkedList<Integer[]> populacja) {
+	public void setPopulacja(LinkedList<Object[]> populacja) {
+		
+		for(Object[] row: populacja){
+			populacja.add(row);
+		}
 		this.populacja = populacja;
 	}
 

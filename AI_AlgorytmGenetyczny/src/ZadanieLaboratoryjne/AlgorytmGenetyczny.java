@@ -30,8 +30,10 @@ public class AlgorytmGenetyczny {
 			//Za ka¿dym kolejnym razem bedzie pobierana populacaja potomków powsta³a
 			//Po wykonaniu metod genetycznych
 			if(populacja.getPopulacja() == null){
+//				System.out.println("Inicjacja Pocz¹tkowej Populacji");
 				populacja.inicjacjaPopulacji(populacja.getFenotyp(), pop_size);
 			}else{
+//				System.out.println("Wybór Kolejnego Pokolenia " + populacja.getPopulacja().size());
 				populacja.getPopulacja();
 			}
 			
@@ -41,13 +43,15 @@ public class AlgorytmGenetyczny {
 			//Selekcja osobników do dalszych procesów  i przydzielenie wycinków ko³a dla kazdego z nich
 			ruletka.prawdopodobienstwoWyboru(populacja.getPopulacjaPoOceniePrzystosowania());
 			ruletka.losowanieOsobnikowKolaRuletki(ruletka.getKoloRuletki());
+			//System.out.println("AVG: " + ruletka.getSredniaWartoscPrzystosowaniaRodzicow());
 			
 			//Zastosowanie operatorów genetycznych
 			metody.ustawienieParametrow(pk, pr, pm, ruletka.getWylosowaneOsobniki());
 			
 			//Ustawienie nowej populacji poczatkowej jako powsta³e potomstwo
-			populacja.setPopulacja(null);
-			//populacja.setPopulacja(metody.getPotomstwo());
+			populacja.getPopulacja().clear();
+			populacja.setPopulacja(metody.getPotomstwo());
+			System.out.println(metody.getPotomstwo().size());
 			
 			licznik_epok++;
 		}

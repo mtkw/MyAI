@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
+import sun.awt.windows.WLightweightFramePeer;
+
 public class MetodyGenetyczne {
 
-	private LinkedList<Object[]> potomstwo = new LinkedList<>();
-	private LinkedList<LinkedList<Object[]>> pary = new LinkedList<>();
+	private LinkedList<Object[]> potomstwo;
+	private LinkedList<LinkedList<Object[]>> pary;
 
 	/*
 	 * Prawdopodobienstwo wyst¹pienie ka¿dej z trzech mo¿liwych metod
@@ -15,7 +17,9 @@ public class MetodyGenetyczne {
 	 * = 100
 	 */
 	public LinkedList<Object[]> ustawienieParametrow(int pk, int pr, int pm, LinkedList<Object[]> pulaRodzicielska) {
-
+		
+		potomstwo = new LinkedList<>();
+		
 		podzialPopulacjiNaPary(pulaRodzicielska);
 
 		for (LinkedList<Object[]> row : pary) {
@@ -33,7 +37,7 @@ public class MetodyGenetyczne {
 				mutacja(row);
 			}
 		}
-		System.out.println("OUTPU SIZE: " + potomstwo.size());
+		potomstwo.clear();
 		return potomstwo;
 	}
 
@@ -94,15 +98,18 @@ public class MetodyGenetyczne {
 	 * dana para Krzyo¿waniu, mutacji czy reprodukcji
 	 */
 	public LinkedList<LinkedList<Object[]>> podzialPopulacjiNaPary(LinkedList<Object[]> pulaRodzicielska) {
-
-		for (int i = 0; i < pulaRodzicielska.size(); i += 2) {
+		
+		pary = new LinkedList<>();
+		
+		int halfSize = pulaRodzicielska.size() / 2;
+		
+		for (int i = 0; i < halfSize; i++) {
 			LinkedList<Object[]> pojedynczaPara = new LinkedList<>();
 
 			Random r = new Random();
 			Object[] wylosowanaLiczba = { r.nextInt(100) };
-
 			pojedynczaPara.add(pulaRodzicielska.get(i));
-			pojedynczaPara.add(pulaRodzicielska.get(i + 1));
+			pojedynczaPara.add(pulaRodzicielska.get(i + halfSize));
 			pojedynczaPara.add(wylosowanaLiczba);
 			pary.add(pojedynczaPara);
 		}
