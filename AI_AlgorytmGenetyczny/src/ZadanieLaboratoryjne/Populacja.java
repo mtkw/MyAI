@@ -18,7 +18,7 @@ public class Populacja {
 
 	private LinkedList<Object[]> fenotyp;
 	private Object[] pierwszyOsobnik;
-	private LinkedList<Object[]> populacja;
+	private LinkedList<Object[]> populacja = new LinkedList<>();
 	private LinkedList<Object[]> populacjaPoOceniePrzystosowania;
 
 	/*
@@ -101,6 +101,7 @@ public class Populacja {
 //			System.out.println("RANDOM:  " + pozycja);
 			populacja.add(fenotyp.get(pozycja));
 		}
+//		System.out.println("INICJACJA: " + populacja.size());
 		return populacja;
 	}
 
@@ -110,6 +111,7 @@ public class Populacja {
 	 * drugi parametr to wartoœæ funkcji przystosowania dla tego chromosomu
 	 */
 	public LinkedList<Object[]> ocenaPrzystosowaniaChromosomu(LinkedList<Object[]> populacja) {
+//		System.out.println("OcenaPrzystosowaniaChromosomu: " + populacja.size());
 		populacjaPoOceniePrzystosowania = new LinkedList<>();
 		for (Object[] chromosom: populacja) {
 			Object[] wektor = new Object[12];
@@ -120,6 +122,7 @@ public class Populacja {
 			wektor[11] = fn.getWartoscFunckji();
 			populacjaPoOceniePrzystosowania.add(wektor);
 		}
+//		System.out.println("OcenaPrzystosowaniaChromosomu: " + populacja.size());
 		return populacjaPoOceniePrzystosowania;
 	}
 
@@ -136,6 +139,7 @@ public class Populacja {
 	}
 
 	public void setPopulacja(LinkedList<Object[]> populacja) {
+//		System.out.println("LISTA POTOMKÓW W POUPLACJA.CLASS: " + populacja.size());
 		this.populacja = populacja;
 	}
 

@@ -7,33 +7,32 @@ public class test {
 	public static void main(String[] args) {
 		AlgorytmGenetyczny algorytm = new AlgorytmGenetyczny();
 		
-		algorytm.algorytmGenetyczny(2047, 11, 10, 75, 23, 2, 10);
-		
-		
+		algorytm.algorytmGenetyczny(2047, 11, 10, 75, 23, 2, 300);
+//		
 //		Populacja p = new Populacja();
 //		FunkcjaPrzystosowania f = new FunkcjaPrzystosowania();
 //		KoloRuletki kolo = new KoloRuletki();
 //		MetodyGenetyczne mg = new MetodyGenetyczne();
-//		
+////		
 //		p.utworzenieFenotypu(2047, 11);
 //		System.out.println("FENOTYP " + p.getFenotyp().size());
-//		
+////		
 //		p.inicjacjaPopulacji(p.getFenotyp(), 10);
 //		System.out.println("POPULACJA: " + p.getPopulacja().size());
+//////		
+//////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getFirst(), 0.5, 2.0));
+//////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getLast(), 0.5, 2.0));
 ////		
-////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getFirst(), 0.5, 2.0));
-////		System.out.println(p.dekodowanieChromosomu(p.getFenotyp().getLast(), 0.5, 2.0));
-//		
-////		System.out.println(Arrays.toString(p.getFenotyp().getFirst()));
-////		
+//////		System.out.println(Arrays.toString(p.getFenotyp().getFirst()));
+//////		
 //		p.ocenaPrzystosowaniaChromosomu(p.getPopulacja());
-//		
+////		
 //		kolo.prawdopodobienstwoWyboru(p.getPopulacjaPoOceniePrzystosowania());
 //		
 //		kolo.losowanieOsobnikowKolaRuletki(kolo.getKoloRuletki());
-//		
+////		
 //		System.out.println("INPUT SIZE: " + kolo.getWylosowaneOsobniki().size());
-//		
+////		
 //		mg.ustawienieParametrow(75, 20, 5, kolo.getWylosowaneOsobniki());
 //		System.out.println("WYBRANE DO METOD GENETYCZNYCH CHROMOSOMY " + kolo.getWylosowaneOsobniki().size());
 //		System.out.println("NASTEPNE POKOLENIE: " + mg.getPotomstwo().size());
